@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Lesson {
 
-    private int lessonId;
+    private String lessonId;      
     private String title;
     private String content;
     private List<String> resources;  // Optional (URLs, file paths, etc.)
@@ -13,7 +13,7 @@ public class Lesson {
 
     public Lesson() {}
 
-    public Lesson(int lessonId, String title, String content, List<String> resources) {
+    public Lesson(String lessonId, String title, String content, List<String> resources) {
         this.lessonId = lessonId;
         this.title = title;
         this.content = content;
@@ -22,7 +22,7 @@ public class Lesson {
 
     // ----------------- Getters -----------------
 
-    public int getLessonId() {
+    public String getLessonId() {
         return lessonId;
     }
 
@@ -39,6 +39,10 @@ public class Lesson {
     }
 
     // ----------------- Setters -----------------
+
+    public void setLessonId(String lessonId) {
+        this.lessonId = lessonId;
+    }
 
     public void setTitle(String title) {
         this.title = title;

@@ -5,12 +5,12 @@ import java.util.List;
 
 public class Course {
 
-    private int courseId;
+    private String courseId;              // changed from int → String
     private String title;
     private String description;
-    private int instructorId;
-    private List<Lesson> lessons;       // List of lesson objects
-    private List<Integer> students;     // List of student IDs
+    private String instructorId;          // changed from int → String
+    private List<Lesson> lessons;         // List of lesson objects
+    private List<String> students;        // changed from List<Integer> → List<String>
 
     // -------------------- Constructors --------------------
 
@@ -19,7 +19,7 @@ public class Course {
         this.students = new ArrayList<>();
     }
 
-    public Course(int courseId, String title, String description, int instructorId) {
+    public Course(String courseId, String title, String description, String instructorId) {
         this.courseId = courseId;
         this.title = title;
         this.description = description;
@@ -30,7 +30,7 @@ public class Course {
 
     // -------------------- Getters --------------------
 
-    public int getCourseId() {
+    public String getCourseId() {
         return courseId;
     }
 
@@ -42,7 +42,7 @@ public class Course {
         return description;
     }
 
-    public int getInstructorId() {
+    public String getInstructorId() {
         return instructorId;
     }
 
@@ -50,11 +50,19 @@ public class Course {
         return lessons;
     }
 
-    public List<Integer> getStudents() {
+    public List<String> getStudents() {
         return students;
     }
 
     // -------------------- Setters --------------------
+
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
+    }
+
+    public void setInstructorId(String instructorId) {
+        this.instructorId = instructorId;
+    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -71,15 +79,15 @@ public class Course {
         lessons.add(lesson);
     }
 
-    // Remove a lesson by lessonId
-    public void removeLesson(int lessonId) {
-        lessons.removeIf(l -> l.getLessonId() == lessonId);
+    // Remove a lesson by ID (String)
+    public void removeLesson(String lessonId) {
+        lessons.removeIf(l -> l.getLessonId().equals(lessonId));
     }
 
     // Edit a lesson (by replacing the old one)
     public void updateLesson(Lesson updatedLesson) {
         for (int i = 0; i < lessons.size(); i++) {
-            if (lessons.get(i).getLessonId() == updatedLesson.getLessonId()) {
+            if (lessons.get(i).getLessonId().equals(updatedLesson.getLessonId())) {
                 lessons.set(i, updatedLesson);
                 break;
             }
@@ -87,15 +95,14 @@ public class Course {
     }
 
     // Add student to the course
-    public void enrollStudent(int studentId) {
+    public void enrollStudent(String studentId) {
         if (!students.contains(studentId)) {
             students.add(studentId);
         }
     }
 
     // Check if a student is enrolled
-    public boolean isStudentEnrolled(int studentId) {
+    public boolean isStudentEnrolled(String studentId) {
         return students.contains(studentId);
     }
-
 }
