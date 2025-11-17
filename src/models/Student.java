@@ -15,8 +15,8 @@ public class Student extends User{
 
     public Student(List<String> enrolledCourdseIds, List<String> completedLesssonIds, int userId, String username, String email, String rawPassword, String role) {
         super(userId, username, email, rawPassword, role);
-        this.enrolledCourseIds = new ArrayList<>();
-        this.completedLessonIds = new ArrayList<>();
+        this.enrolledCourseIds = new ArrayList<String>();
+        this.completedLessonIds = new ArrayList<String>();
     }
 
     public List<String> getEnrolledCourdseIds() {
