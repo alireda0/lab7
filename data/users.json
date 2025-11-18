@@ -1,0 +1,51 @@
+[
+    {
+        "role": "STUDENT",
+        "userId": 1,
+        "enrolledCourseIds": [
+            "C101",
+            "C102"
+        ],
+        "completedLessonIds": [
+            "L101",
+            "L102"
+        ],
+        "email": "alice@example.com",
+        "passwordHash": "07f3365e1727d817d3c1d11821d22877ba2888a6681ad989f51567edb1242023",
+        "username": "Alice"
+    },
+    {
+        "role": "STUDENT",
+        "userId": 2,
+        "enrolledCourseIds": ["C102"],
+        "completedLessonIds": ["L103"],
+        "email": "bob@example.com",
+        "passwordHash": "f197d14e6a6a56376ba3f55758da151446f70ac3ee50978674bdd88d405dfa10",
+        "username": "Bob"
+    },
+    {
+        "role": "INSTRUCTOR",
+        "userId": 3,
+        "email": "smith@example.com",
+        "passwordHash": "67d3432e0672bcec12ad95a69986cf39ebadf0c168a164e1a4a36b8455a23fd6",
+        "username": "Dr. Smith"
+    },
+    {
+        "role": "STUDENT",
+        "userId": 4,
+        "enrolledCourseIds": ["C101"],
+        "completedLessonIds": ["L101"],
+        "email": "charlie@example.com",
+        "passwordHash": "89e01536ac207279409d4de1e5253e01f4a1769e696db0d6062ca9b8f56767c8",
+        "username": "Charlie"
+    },
+    {
+        "role": "STUDENT",
+        "userId": 4,
+        "enrolledCourseIds": [],
+        "completedLessonIds": [],
+        "email": "charlie@example.com",
+        "passwordHash": "1fd0c883fcfec2463c192fd17d2537029ac0c3eaed64ac6812ca258d5303c741",
+        "username": "Charlie"
+    }
+]

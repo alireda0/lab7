@@ -1,0 +1,13 @@
+[{
+    "description": "Learn arrays, stacks, queues, lists",
+    "students": ["3"],
+    "title": "Data Structures",
+    "courseId": "1",
+    "instructorId": "1",
+    "lessons": [{
+        "lessonId": "1",
+        "resources": [],
+        "title": "Arrays",
+        "content": "Introduction to arrays"
+    }]
+}]
