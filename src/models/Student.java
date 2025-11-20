@@ -10,8 +10,8 @@ public class Student extends User{
     private List<String> enrolledCourseIds;
     private List<String> completedLessonIds;
 
-    public Student(List<String> enrolledCourdseIds, List<String> completedLesssonIds, int userId, String username, String email, String rawPassword, String role) {
-        super(userId, username, email, rawPassword, role);
+    public Student(List<String> enrolledCourdseIds, List<String> completedLesssonIds, int userId, String username, String email, String rawPassword, String role, boolean isAlreadyHashed) {
+        super(userId, username, email, rawPassword, role, isAlreadyHashed);
         this.enrolledCourseIds = new ArrayList<String>();
         this.completedLessonIds = new ArrayList<String>();
     }

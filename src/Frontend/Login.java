@@ -133,6 +133,7 @@ public class Login extends javax.swing.JFrame {
         char[] pwdChars = textPassword.getPassword(); // get raw password
         String password = new String(pwdChars);
         String selectedRole = cmbRole.getSelectedItem().toString();
+        
 
         // ----------- VALIDATION -----------
         if (username.isEmpty()) {
@@ -163,6 +164,18 @@ public class Login extends javax.swing.JFrame {
                 break;
             }
         }
+        // Inside Login.java -> btnLoginActionPerformed
+
+System.out.println("--- DEBUG INFO ---");
+System.out.println("Username: " + found.getUsername());
+System.out.println("Input Hash (What you typed): " + hashedInput);
+System.out.println("Stored Hash (From file):     " + found.getPasswordHash());
+System.out.println("------------------");
+
+if (!found.getPasswordHash().equals(hashedInput)) {
+    JOptionPane.showMessageDialog(this, "Incorrect password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
+    return;
+}
 
         if (found == null) {
             JOptionPane.showMessageDialog(this, "User not found.", "Login Failed", JOptionPane.ERROR_MESSAGE);
@@ -201,7 +214,7 @@ public class Login extends javax.swing.JFrame {
 
     private void signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupActionPerformed
         this.setVisible(false);
-        Signup s=new Signup();
+        SignUp s=new SignUp();
         s.setVisible(true);
     }//GEN-LAST:event_signupActionPerformed
 private String hashPassword(String rawPassword) {
@@ -232,13 +245,13 @@ private String hashPassword(String rawPassword) {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(loginpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(loginpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(loginpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(loginpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

@@ -72,13 +72,13 @@ public class JsonDatabaseManager {
                             completed.add(completedArray.getString(j));
                     }
 
-                    Student s = new Student(new ArrayList<>(), new ArrayList<>(), userId, username, email, passwordHash, role);
+                    Student s = new Student(new ArrayList<>(), new ArrayList<>(), userId, username, email, passwordHash, role, true);
                     s.getEnrolledCourdseIds().addAll(enrolled);
                     s.getCompletedLesssonIds().addAll(completed);
                     users.add(s);
 
                 } else if ("INSTRUCTOR".equals(role)) {
-                    Instructor ins = new Instructor(userId, username, email, passwordHash);
+                    Instructor ins = new Instructor(userId, username, email, passwordHash, true);
                     users.add(ins);
                 }
             }

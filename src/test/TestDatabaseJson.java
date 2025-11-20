@@ -28,7 +28,7 @@ public class TestDatabaseJson {
         // -------- Add a new student --------
         Student newStudent = new Student(
                 List.of(), List.of(),
-                4, "Charlie", "charlie@example.com", "mypassword", User.ROLE_STUDENT
+                4, "Charlie", "charlie@example.com", "mypassword", User.ROLE_STUDENT, false
         );
         db.addUser(newStudent);
         System.out.println("\nAdded new student: " + newStudent.getUsername());

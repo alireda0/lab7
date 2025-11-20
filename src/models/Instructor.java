@@ -13,18 +13,18 @@ import java.util.List;
  */
 public class Instructor extends User{
     
-    private List<Integer> createdCourses;
+    private List<String> createdCourses;
     
-    public Instructor(int userId, String username, String email, String rawPassword) {
-        super(userId, username, email, rawPassword, ROLE_INSTRUCTOR);
+    public Instructor(int userId, String username, String email, String rawPassword, boolean isAlreadyHashed) {
+        super(userId, username, email, rawPassword, ROLE_INSTRUCTOR, isAlreadyHashed);
         //role instructor is already passed
         
         this.createdCourses= new ArrayList<>();
     }
     
     //Managment methods
-    public void addCreatedCourse(int courseId) {
-        if (courseId <= 0) {
+    public void addCreatedCourse(String courseId) {
+        if (Integer.parseInt(courseId) <= 0) {
             throw new IllegalArgumentException("Course ID must be positive.");
         }
         createdCourses.add(courseId);
@@ -34,7 +34,7 @@ public class Instructor extends User{
         createdCourses.remove(Integer.valueOf(courseId));
     }
     
-    public List<Integer> getCreatedCourses() {
+    public List<String> getCreatedCourses() {
         return createdCourses;
     }
 
