@@ -1,6 +1,7 @@
 [
     {
         "role": "STUDENT",
+        "quizAttempts": [],
         "userId": 808,
         "enrolledCourseIds": [],
         "completedLessonIds": [],
@@ -10,6 +11,7 @@
     },
     {
         "role": "STUDENT",
+        "quizAttempts": [],
         "userId": 4,
         "enrolledCourseIds": [],
         "completedLessonIds": [],
@@ -19,6 +21,7 @@
     },
     {
         "role": "STUDENT",
+        "quizAttempts": [],
         "userId": 357,
         "enrolledCourseIds": [
             "C001",
@@ -30,4 +33,10 @@
         "username": "reda"
     },
     {
-        "role": "STUDENT",
+        "role": "INSTRUCTOR",
+        "userId": 148,
+        "email": "joo@alex.com",
+        "passwordHash": "a8fa548f75a0f1b21db8d3f3702296a185dbe4ee0a924d64f89cb26862dec5dd",
+        "username": "joo"
+    }
+]

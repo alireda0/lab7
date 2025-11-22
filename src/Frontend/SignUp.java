@@ -23,9 +23,10 @@ public class SignUp extends javax.swing.JFrame {
      * Creates new form Signup
      */
     public SignUp() {
+        
+        initComponents();
         setTitle("Sign Up page");
         setLocationRelativeTo(null);
-        initComponents();
     }
 
     /**

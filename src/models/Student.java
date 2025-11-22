@@ -5,6 +5,8 @@ import org.json.JSONTokener;
 public class Student extends User{
     private List<String> enrolledCourseIds;
     private List<String> completedLessonIds;
+    private Map<String, List<QuizAttempt>> quizAttemptsByLesson;
+    private List<Certificate> certificates;
 
     
    public Student(List<String> enrolledCourseIds,
@@ -20,6 +22,8 @@ public class Student extends User{
 
     this.enrolledCourseIds = enrolledCourseIds != null ? enrolledCourseIds : new ArrayList<>();
     this.completedLessonIds = completedLessonIds != null ? completedLessonIds : new ArrayList<>();
+    this.quizAttemptsByLesson = new HashMap<>();
+    this.certificates = new ArrayList<>();
 }
    
     public List<String> getEnrolledCourseIds() {
@@ -65,29 +69,32 @@ public class Student extends User{
         return false;
     }
 
-    public JSONTokener getCompletedLesssonIds() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public List<String> getCompletedLesssonIds() {   // also keeping your spelling
+    return completedLessonIds;
     }
-
-    public JSONTokener getEnrolledCourdseIds() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public List<String> getEnrolledCourdseIds() {    // Keeping your misspelled name to avoid breaking code
+    return enrolledCourseIds;
     }
 
     public List<QuizAttempt> getAttemptsForCourseLesson(String courseId, String lid) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
-    public boolean hasCompletedLesson(String lid) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public boolean hasCompletedLesson(String lessonId) {
+    return completedLessonIds.contains(lessonId);
     }
 
-    public void markLessonCompleted(String lessonId) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+   public void markLessonCompleted(String lessonId) {
+    if (!completedLessonIds.contains(lessonId)) {
+        completedLessonIds.add(lessonId);
+    }
     }
 
     public void enrollInCourse(String courseId) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    if (!enrolledCourseIds.contains(courseId)) {
+        enrolledCourseIds.add(courseId);
     }
+   }
     
     public void addCertificate(Certificate c) {
     certificates.add(c);

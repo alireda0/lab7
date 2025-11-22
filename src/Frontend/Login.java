@@ -195,7 +195,13 @@ if (!found.getPasswordHash().equals(hashedInput)) {
         JOptionPane.showMessageDialog(this, "Welcome " + found.getUsername(), "Login Successful", JOptionPane.INFORMATION_MESSAGE);
 
         // ----------- OPEN DASHBOARDS -----------
-
+            if (selectedRole.equalsIgnoreCase("STUDENT")) {
+                StudentDashboard sd = new StudentDashboard((Student) found);
+                sd.setVisible(true);
+            } else if (selectedRole.equalsIgnoreCase("INSTRUCTOR")) {
+                InstructorDashboard id = new InstructorDashboard((Instructor) found);
+                id.setVisible(true);
+            }
 
         this.dispose(); // close login frame
 
