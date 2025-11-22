@@ -1,6 +1,7 @@
 package models;
 
 import java.util.List;
+import models.Quiz;
 
 public class Lesson {
 
@@ -8,7 +9,8 @@ public class Lesson {
     private String title;
     private String content;
     private List<String> resources;  // Optional (URLs, file paths, etc.)
-
+    private Quiz quiz;
+    
     
     // ----------------- Constructors -----------------
 

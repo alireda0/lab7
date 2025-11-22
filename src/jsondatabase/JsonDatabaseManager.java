@@ -1,5 +1,7 @@
 package jsondatabase;
 
+import models.Student;
+import models.Lesson;
 import models.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
