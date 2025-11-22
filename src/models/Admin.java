@@ -1,13 +1,8 @@
 package models;
 
+
 import models.User;
 
-/**
- * Admin class represents an administrator user with elevated permissions.
- * Admins can approve/reject courses, view analytics, and manage the platform.
- * 
- * Used in Lab 8 for course approval workflow and platform management.
- */
 public class Admin extends User {
     
     public static final String ROLE_ADMIN = "ADMIN";

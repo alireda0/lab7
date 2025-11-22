@@ -112,13 +112,12 @@ public class StudentDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cmbTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTypeActionPerformed
-        cmbType.setModel(new javax.swing.DefaultComboBoxModel<>(
-        new String[] { "Choose Option", "Available Courses", "Enrolled Courses" }
-));        
+     
     }//GEN-LAST:event_cmbTypeActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
- //new Certificates(loggedStudent).setVisible(true);        
+        new Certificates(loggedStudent).setVisible(true);
+        this.setVisible(false);      
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

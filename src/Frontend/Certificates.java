@@ -4,19 +4,79 @@
  */
 package Frontend;
 
-/**
- *
- * @author SHIKO
- */
+import jsondatabase.JsonDatabaseManager;
+import models.Certificate;
+import models.Course;
+import models.Student;
+import org.json.JSONObject;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 public class Certificates extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Certificates
-     */
-    public Certificates() {
-        initComponents();
+    private Student loggedStudent;
+    private DefaultTableModel tableModel;
+    private JsonDatabaseManager db = new JsonDatabaseManager();
+
+    
+     public Certificates() {
+        this(null);
     }
 
+    public Certificates(Student student) {
+        this.loggedStudent = student;
+        initComponents();
+        
+        tableModel = new DefaultTableModel(
+            new String[]{"Certificate ID", "Course Name", "Issue Date"}, 0
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        tableCertificates.setModel(tableModel);
+        
+        loadCertificates();
+        setLocationRelativeTo(null);
+        setTitle("My Certificates");
+    }
+    private void loadCertificates() {
+    tableModel.setRowCount(0);
+    
+    List<Certificate> certificates = loggedStudent.getCertificates();
+    if (certificates == null || certificates.isEmpty()) {
+        JOptionPane.showMessageDialog(this,
+                    "No Certificates Earned",
+                    "Error",
+                    JOptionPane.WARNING_MESSAGE);
+        btnDownload.setEnabled(false);  
+        return;  
+    }
+    for (Certificate cert : certificates) {
+        Course course = db.getCourseById(cert.getCourseId());
+        String courseName = course != null ? course.getTitle() : "Unknown";
+        tableModel.addRow(new Object[]{
+            cert.getCertificateId(),  // Column 0
+            courseName,                // Column 1
+            cert.getIssueDate()       // Column 2
+        });
+    }
+    
+    // ===== STEP 5: Update UI =====
+   JOptionPane.showMessageDialog(this,
+                    "You have earned "+ certificates.size()+ "certificates!!",
+                    "",
+                    JOptionPane.INFORMATION_MESSAGE);
+    btnDownload.setEnabled(true);  // Now they can download!
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,34 +88,44 @@ public class Certificates extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableCertificates = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnDownload = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableCertificates.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Certificate ID", "Course", "Issue Date"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableCertificates);
 
         jLabel2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
         jLabel2.setText("Certificates");
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Download");
+        btnDownload.setText("Download");
+        btnDownload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDownloadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -67,7 +137,7 @@ public class Certificates extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnDownload, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(132, 132, 132)
                         .addComponent(jLabel2))
@@ -86,12 +156,155 @@ public class Certificates extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnDownload))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDownloadActionPerformed
+        int selectedRow = tableCertificates.getSelectedRow();
+        
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this,
+                "Please select a certificate to download.",
+                "No Selection",
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        String certificateId = tableModel.getValueAt(selectedRow, 0).toString();
+        String courseName = tableModel.getValueAt(selectedRow, 1).toString();
+        
+        Certificate certificate = null;
+        for (Certificate cert : loggedStudent.getCertificates()) {
+            if (cert.getCertificateId().equals(certificateId)) {
+                certificate = cert;
+                break;
+            }
+        }
+        
+        if (certificate == null) {
+            JOptionPane.showMessageDialog(this, "Certificate not found!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Generate JSON certificate
+        JSONObject certificateJSON = generateJSONCertificate(certificate, courseName);
+        
+        // Save JSON file
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Save Certificate");
+        fileChooser.setSelectedFile(new File("Certificate_" + certificateId + ".json"));
+        
+        int userSelection = fileChooser.showSaveDialog(this);
+        
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToSave = fileChooser.getSelectedFile();
+            
+            try (FileWriter writer = new FileWriter(fileToSave)) {
+                // Write formatted JSON (indented with 4 spaces)
+                writer.write(certificateJSON.toString(4));
+                
+                JOptionPane.showMessageDialog(this,
+                    "Certificate downloaded successfully!\nSaved to: " + fileToSave.getAbsolutePath(),
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
+                
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this,
+                    "Error saving certificate: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btnDownloadActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         new StudentDashboard(loggedStudent).setVisible(true);
+         this.dispose(); 
+    }//GEN-LAST:event_jButton1ActionPerformed
+    private JSONObject generateJSONCertificate(Certificate certificate, String courseName) {
+        JSONObject certJSON = new JSONObject();
+        
+        // Certificate metadata
+        certJSON.put("certificateType", "COURSE_COMPLETION");
+        certJSON.put("platform", "Skill Forge Learning Management System");
+        certJSON.put("version", "1.0");
+        certJSON.put("generatedDate", java.time.LocalDateTime.now().toString());
+        
+        // Certificate identification
+        JSONObject identification = new JSONObject();
+        identification.put("certificateId", certificate.getCertificateId());
+        identification.put("issueDate", certificate.getIssueDate());
+        identification.put("issuedBy", "Skill Forge Platform");
+        certJSON.put("identification", identification);
+        
+        // Student information
+        JSONObject student = new JSONObject();
+        student.put("studentId", certificate.getStudentId());
+        student.put("studentName", loggedStudent.getUsername());
+        student.put("studentEmail", loggedStudent.getEmail());
+        certJSON.put("student", student);
+        
+        // Course information
+        JSONObject course = new JSONObject();
+        Course courseObj = db.getCourseById(certificate.getCourseId());
+        course.put("courseId", certificate.getCourseId());
+        course.put("courseName", courseName);
+        if (courseObj != null) {
+            course.put("courseDescription", courseObj.getDescription());
+            course.put("instructorId", courseObj.getInstructorId());
+            course.put("totalLessons", courseObj.getLessons().size());
+        }
+        certJSON.put("course", course);
+        
+        // Achievement details
+        JSONObject achievement = new JSONObject();
+        achievement.put("status", "COMPLETED");
+        achievement.put("completionDate", certificate.getIssueDate());
+        achievement.put("requirements", new org.json.JSONArray()
+            .put("Completed all course lessons")
+            .put("Passed all quizzes with minimum 70% score")
+            .put("Met all course requirements")
+        );
+        certJSON.put("achievement", achievement);
+        
+        // Verification
+        JSONObject verification = new JSONObject();
+        verification.put("verified", true);
+        verification.put("verificationMethod", "Digital Signature");
+        verification.put("verificationURL", "https://skillforge.edu/verify/" + certificate.getCertificateId());
+        certJSON.put("verification", verification);
+        
+        // Digital signature (simple hash for demonstration)
+        String signature = generateSignature(certificate);
+        certJSON.put("digitalSignature", signature);
+        
+        return certJSON;
+    }   
+    private String generateSignature(Certificate certificate) {
+        String data = certificate.getCertificateId() + 
+                      certificate.getStudentId() + 
+                      certificate.getCourseId() + 
+                      certificate.getIssueDate();
+        
+        try {
+            java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA-256");
+            byte[] hash = md.digest(data.getBytes(java.nio.charset.StandardCharsets.UTF_8));
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hash) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (Exception e) {
+            return "UNSIGNED";
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -129,11 +342,11 @@ public class Certificates extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDownload;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tableCertificates;
     // End of variables declaration//GEN-END:variables
 }
