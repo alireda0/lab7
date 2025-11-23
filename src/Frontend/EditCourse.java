@@ -71,6 +71,7 @@ public class EditCourse extends javax.swing.JFrame {
         deleteLesson = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        manageQuiz = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,6 +110,13 @@ public class EditCourse extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        manageQuiz.setText("Manage Quiz");
+        manageQuiz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageQuizActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,10 +124,12 @@ public class EditCourse extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(addLesson, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(deleteLesson, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(manageQuiz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,7 +138,8 @@ public class EditCourse extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteLesson)
-                    .addComponent(addLesson))
+                    .addComponent(addLesson)
+                    .addComponent(manageQuiz))
                 .addGap(18, 18, 18))
         );
 
@@ -176,6 +187,25 @@ public class EditCourse extends javax.swing.JFrame {
         addWindow.setVisible(true);
     }//GEN-LAST:event_addLessonActionPerformed
 
+    private void manageQuizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageQuizActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+    if (selectedRow == -1) return;
+    
+    String lessonId = jTable1.getValueAt(selectedRow, 0).toString();
+    
+    // Find the lesson object from the course
+    Lesson selectedLesson = null;
+    for(Lesson l : course.getLessons()) {
+        if(l.getLessonId().equals(lessonId)) {
+            selectedLesson = l;
+            break;
+        }
+    }
+    
+    // Open the Quiz Editor (You will need to create this class next)
+    new QuizEditor(selectedLesson, course).setVisible(true);
+    }//GEN-LAST:event_manageQuizActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -216,5 +246,6 @@ public class EditCourse extends javax.swing.JFrame {
     private javax.swing.JButton deleteLesson;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton manageQuiz;
     // End of variables declaration//GEN-END:variables
 }

@@ -36,7 +36,7 @@ public class InsCourses extends javax.swing.JFrame {
     }
     private void loadInstructorCourses() {
         // --- THE FIX: Create the model FIRST. Do not call setRowCount(0) here. ---
-        String[] colNames = {"Course ID", "Title", "Description"};
+        String[] colNames = {"Course ID", "Title", "Description", "Status"};
         
         tableModel = new DefaultTableModel(colNames, 0) {
             @Override
@@ -58,6 +58,7 @@ public class InsCourses extends javax.swing.JFrame {
                         c.getCourseId(),
                         c.getTitle(),
                         c.getDescription(),
+                        c.getStatus()
                 });
             }
         }
@@ -84,17 +85,17 @@ public class InsCourses extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Course ID", "Title", "Description"
+                "Course ID", "Title", "Description", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

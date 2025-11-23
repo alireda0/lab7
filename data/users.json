@@ -1,8 +1,6 @@
 [
     {
         "role": "STUDENT",
-        "certificates": [],
-        "quizAttempts": [],
         "userId": 808,
         "enrolledCourseIds": [],
         "completedLessonIds": [],
@@ -12,8 +10,6 @@
     },
     {
         "role": "STUDENT",
-        "certificates": [],
-        "quizAttempts": [],
         "userId": 4,
         "enrolledCourseIds": [],
         "completedLessonIds": [],
@@ -23,29 +19,68 @@
     },
     {
         "role": "STUDENT",
-        "certificates": [],
-        "quizAttempts": [],
         "userId": 357,
-        "enrolledCourseIds": [
-            "C01",
-            "C02",
-            "C101",
-            "C001",
-            "C002"
-        ],
-        "completedLessonIds": [
-            "L001",
-            "L002"
-        ],
+        "enrolledCourseIds": [],
+        "completedLessonIds": [],
         "email": "reda@gmail.com",
         "passwordHash": "8a4665c1246937c22afaff4c257532f076e5735b3a9f778da393b7a17d438847",
         "username": "reda"
     },
     {
+        "role": "STUDENT",
+        "userId": 3,
+        "enrolledCourseIds": ["1"],
+        "completedLessonIds": [],
+        "email": "ghsk@gsgjh.com",
+        "passwordHash": "f6e0a1e2ac41945a9aa7ff8a8aaa0cebc12a3bcc981a929ad5cf810a090e11ae",
+        "username": "mmm"
+    },
+    {
         "role": "INSTRUCTOR",
-        "userId": 148,
-        "email": "joo@alex.com",
-        "passwordHash": "a8fa548f75a0f1b21db8d3f3702296a185dbe4ee0a924d64f89cb26862dec5dd",
-        "username": "joo"
+        "userId": 1,
+        "email": "sghj@gmajhsd.com",
+        "passwordHash": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+        "username": "Migo"
+    },
+    {
+        "role": "INSTRUCTOR",
+        "userId": 101,
+        "email": "mo@gmail.com",
+        "passwordHash": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+        "username": "Mohamed"
+    },
+    {
+        "role": "STUDENT",
+        "userId": 1001,
+        "enrolledCourseIds": ["C1001"],
+        "completedLessonIds": [],
+        "email": "alice@test.com",
+        "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "username": "Alice"
+    },
+    {
+        "role": "STUDENT",
+        "userId": 1002,
+        "enrolledCourseIds": ["C1001"],
+        "completedLessonIds": [],
+        "email": "bob@test.com",
+        "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "username": "Bob"
+    },
+    {
+        "role": "STUDENT",
+        "userId": 1003,
+        "enrolledCourseIds": ["C1003"],
+        "completedLessonIds": [],
+        "email": "dave@test.com",
+        "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "username": "Dave"
+    },
+    {
+        "role": "INSTRUCTOR",
+        "userId": 102,
+        "email": "drsmith@test.com",
+        "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "username": "DrSmith"
     }
 ]

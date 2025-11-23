@@ -26,11 +26,13 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="addLesson" min="-2" pref="117" max="-2" attributes="0"/>
-              <EmptySpace pref="137" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="deleteLesson" min="-2" pref="120" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="manageQuiz" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
+          <Component id="jScrollPane1" alignment="0" pref="400" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -41,6 +43,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="deleteLesson" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="addLesson" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="manageQuiz" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
           </Group>
@@ -84,5 +87,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="manageQuiz">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Manage Quiz"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageQuizActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>
