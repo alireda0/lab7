@@ -1,11 +1,12 @@
 package models;
 
 public class QuizAttempt {
-    private long timestamp; // epoch millis
-    private int score; // percentage 0..100
+
+    private long timestamp;
+    private int score;
     private int correctCount;
     private int totalQuestions;
-    private String lessonId; // optional for clarity
+    private String lessonId;
 
     public QuizAttempt() {}
 
@@ -56,6 +57,4 @@ public class QuizAttempt {
     public void setLessonId(String lessonId) {
         this.lessonId = lessonId;
     }
-
-    
 }

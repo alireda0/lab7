@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Quiz {
+
     private List<Question> questions;
-    private int passingPercentage; // e.g. 60 -> need >=60% to pass
-    private int maxAttempts; // 0 or negative -> unlimited
+    private int passingPercentage;  
+    private int maxAttempts;
 
     public Quiz() {
         this.questions = new ArrayList<>();
         this.passingPercentage = 60;
-        this.maxAttempts = 0;
+        this.maxAttempts = 0; // 0 = unlimited
     }
 
     public Quiz(List<Question> questions, int passingPercentage, int maxAttempts) {
@@ -44,8 +45,7 @@ public class Quiz {
         this.maxAttempts = maxAttempts;
     }
 
-    public int totalQuestions() { 
-        return questions == null ? 0 : questions.size(); 
+    public int totalQuestions() {
+        return questions != null ? questions.size() : 0;
     }
 }
-

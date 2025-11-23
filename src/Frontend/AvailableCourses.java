@@ -35,24 +35,40 @@ public class AvailableCourses extends javax.swing.JFrame {
 
     loadAvailableCourses();     
     }
-    private void loadAvailableCourses() {
-        tableModel.setRowCount(0);   // Clear previous rows
-
-        List<Course> allCourses = db.loadCourses();
-
-        for (Course c : allCourses) {
-
-            // Skip already enrolled courses
-            if (!loggedStudent.getEnrolledCourdseIds().contains(c.getCourseId())) {
-
-                tableModel.addRow(new Object[]{
-                        c.getCourseId(),
-                        c.getTitle(),
-                        c.getInstructorId()
-                });
-            }
+   private void loadAvailableCourses() {
+    tableModel.setRowCount(0); // Clear existing rows
+    
+    List<Course> allCourses = db.loadCourses();
+    
+    // Get student's enrolled course IDs
+    List<String> enrolledIds = loggedStudent.getEnrolledCourdseIds();
+    
+    for (Course c : allCourses) {
+        // Only show APPROVED courses
+        if (!"APPROVED".equals(c.getStatus())) {
+            continue; // Skip non-approved courses
         }
+        
+        // Only show courses the student is NOT already enrolled in
+        if (enrolledIds.contains(c.getCourseId())) {
+            continue; // Skip already enrolled courses
+        }
+        
+        // Add to table (this course is available for enrollment)
+        tableModel.addRow(new Object[]{
+            c.getCourseId(),
+            c.getTitle(),
+            c.getInstructorId()
+        });
     }
+    
+    // Update message
+    if (tableModel.getRowCount() == 0) {
+        JOptionPane.showMessageDialog(this,
+            "No available courses to enroll in.\nYou may be enrolled in all courses already!",
+            "No Courses",
+            JOptionPane.INFORMATION_MESSAGE);
+    }}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -141,42 +157,56 @@ public class AvailableCourses extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         int row = jTable1.getSelectedRow();
-
-        if (row == -1) {
-            JOptionPane.showMessageDialog(this,
-                    "Please select a course.",
-                    "No Selection",
-                    JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        // Get course ID from selected row
-        String courseId = tableModel.getValueAt(row, 0).toString();
-
-        Course course = db.getCourseById(courseId);
-        if (course == null) {
-            JOptionPane.showMessageDialog(this,
-                    "Error: Course not found.",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // ---------------- ENROLL ----------------
-        loggedStudent.enrollInCourse(courseId);
-        course.enrollStudent(String.valueOf(loggedStudent.getUserId()));
-
-        // Save changes
-        db.updateUser(loggedStudent);
-        db.updateCourse(course);
-
+            int selectedRow = jTable1.getSelectedRow(); // Replace 'table' with your actual table variable name
+    
+    if (selectedRow == -1) {
         JOptionPane.showMessageDialog(this,
-                "You have successfully enrolled in: " + course.getTitle(),
-                "Enrollment Successful",
-                JOptionPane.INFORMATION_MESSAGE);
-
-        loadAvailableCourses();    // Refresh table
+            "Please select a course to enroll.",
+            "No Selection",
+            JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    
+    // Get course ID from selected row
+    String courseId = tableModel.getValueAt(selectedRow, 0).toString();
+    
+    // Check if already enrolled (shouldn't happen, but double-check)
+    if (loggedStudent.getEnrolledCourdseIds().contains(courseId)) {
+        JOptionPane.showMessageDialog(this,
+            "You are already enrolled in this course!",
+            "Already Enrolled",
+            JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    
+    // Get course object
+    Course course = db.getCourseById(courseId);
+    
+    if (course == null) {
+        JOptionPane.showMessageDialog(this,
+            "Error: Course not found!",
+            "Error",
+            JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    // Enroll student in course
+    loggedStudent.enrollInCourse(courseId);
+    
+    // Add student to course's student list
+    course.getStudents().add(String.valueOf(loggedStudent.getUserId()));
+    
+    // Save changes to database
+    db.updateUser(loggedStudent);
+    db.updateCourse(course);
+    
+    JOptionPane.showMessageDialog(this,
+        "Successfully enrolled in: " + course.getTitle(),
+        "Enrollment Success",
+        JOptionPane.INFORMATION_MESSAGE);
+    
+    // Refresh the table (remove enrolled course from available)
+    loadAvailableCourses(); // Refresh table
     
     }//GEN-LAST:event_jButton2ActionPerformed
 

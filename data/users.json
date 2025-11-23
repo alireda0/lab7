@@ -1,6 +1,7 @@
 [
     {
         "role": "STUDENT",
+        "certificates": [],
         "quizAttempts": [],
         "userId": 808,
         "enrolledCourseIds": [],
@@ -11,6 +12,7 @@
     },
     {
         "role": "STUDENT",
+        "certificates": [],
         "quizAttempts": [],
         "userId": 4,
         "enrolledCourseIds": [],
@@ -21,13 +23,20 @@
     },
     {
         "role": "STUDENT",
+        "certificates": [],
         "quizAttempts": [],
         "userId": 357,
         "enrolledCourseIds": [
+            "C01",
+            "C02",
+            "C101",
             "C001",
             "C002"
         ],
-        "completedLessonIds": [],
+        "completedLessonIds": [
+            "L001",
+            "L002"
+        ],
         "email": "reda@gmail.com",
         "passwordHash": "8a4665c1246937c22afaff4c257532f076e5735b3a9f778da393b7a17d438847",
         "username": "reda"

@@ -3,9 +3,10 @@ package models;
 import java.util.List;
 
 public class Question {
+
     private String questionText;
-    private List<String> options;
-    private int correctOptionIndex; // index of correct option (0-based)
+    private List<String> options;  
+    private int correctOptionIndex;
 
     public Question() {}
 
@@ -38,7 +39,4 @@ public class Question {
     public void setCorrectOptionIndex(int correctOptionIndex) {
         this.correctOptionIndex = correctOptionIndex;
     }
-
-    
 }
-

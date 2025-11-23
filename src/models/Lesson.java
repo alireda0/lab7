@@ -1,7 +1,6 @@
 package models;
 
 import java.util.List;
-import models.Quiz;
 
 public class Lesson {
 
