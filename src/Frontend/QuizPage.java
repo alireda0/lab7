@@ -20,7 +20,7 @@ public class QuizPage extends javax.swing.JFrame {
     private Student student;
     private Course course;
     private Lesson lesson;
-    private Quiz quiz;
+    private models.Quiz quiz;
     private int currentIndex = 0;
     private int correctCount = 0;
     private JsonDatabaseManager db = new JsonDatabaseManager(); 
@@ -202,11 +202,17 @@ public class QuizPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-       saveCurrentAnswer(); // Save before moving!
-
+       if(quiz.totalQuestions()==1 || quiz.totalQuestions()==0){
+           btnNext.setEnabled(false);
+       }
+        saveCurrentAnswer(); // Save before moving!
+       
        currentIndex++;
        if (currentIndex < quiz.totalQuestions()) {
            loadQuestion(currentIndex);
+       }
+       if(currentIndex==quiz.totalQuestions()){
+           btnNext.setEnabled(false);
        }
     }//GEN-LAST:event_btnNextActionPerformed
 private void checkAnswer() {
@@ -345,13 +351,13 @@ private void loadQuestion(int index) {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Quiz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QuizPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Quiz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QuizPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Quiz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QuizPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Quiz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QuizPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
