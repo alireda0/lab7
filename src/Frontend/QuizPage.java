@@ -202,6 +202,11 @@ public class QuizPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        if(quiz.totalQuestions()==1 || quiz.totalQuestions()==0){
+            btnNext.setEnabled(false);
+        }
+        saveCurrentAnswer(); // Save before moving!
+
        if(quiz.totalQuestions()==1 || quiz.totalQuestions()==0){
            btnNext.setEnabled(false);
        }
