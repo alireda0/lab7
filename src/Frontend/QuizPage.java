@@ -207,6 +207,11 @@ public class QuizPage extends javax.swing.JFrame {
         }
         saveCurrentAnswer(); // Save before moving!
 
+       if(quiz.totalQuestions()==1 || quiz.totalQuestions()==0){
+           btnNext.setEnabled(false);
+       }
+        saveCurrentAnswer(); // Save before moving!
+       
        currentIndex++;
        if (currentIndex < quiz.totalQuestions()) {
            loadQuestion(currentIndex);
@@ -232,53 +237,68 @@ private void checkAnswer() {
     }
 }
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-       saveCurrentAnswer(); // Save the very last answer
+      saveCurrentAnswer();
 
-        int correctCount = 0;
+        // 2. Calculate Score by looping through the ARRAY (not the screen)
+        int calculatedCorrectCount = 0;
         int total = quiz.totalQuestions();
+        java.util.List<Question> questions = quiz.getQuestions();
 
-        // Calculate Score using userAnswers array
         for (int i = 0; i < total; i++) {
-            int correctIndex = quiz.getQuestions().get(i).getCorrectOptionIndex();
-            if (userAnswers[i] == correctIndex) {
-                correctCount++;
+            int usersSelection = userAnswers[i]; // What the student picked for Question i
+            int correctIndex = questions.get(i).getCorrectOptionIndex(); // The real answer
+
+            if (usersSelection == correctIndex) {
+                calculatedCorrectCount++;
             }
         }
 
-        int score = (total > 0) ? (correctCount * 100) / total : 0;
-        int passingScore = quiz.getPassingPercentage();
+        // 3. Calculate Percentage
+        int score = (total > 0) ? (calculatedCorrectCount * 100) / total : 0;
 
-        // Create Attempt Object
-        QuizAttempt attempt = new QuizAttempt(
-                lesson.getLessonId(),
-                System.currentTimeMillis(),
-                score,
-                correctCount,
-                total
+        // 4. Show Result
+        JOptionPane.showMessageDialog(this,
+            "Quiz Completed!\nCorrect: " + calculatedCorrectCount + "/" + total +
+            "\nScore: " + score + "%",
+            "Quiz Result",
+            JOptionPane.INFORMATION_MESSAGE
         );
 
-        try {
-            // Save to DB
-            db.recordQuizAttempt(student.getUserId(), lesson.getLessonId(), attempt, passingScore);
-            
-            // Update Local Memory
-            student.addQuizAttempt(lesson.getLessonId(), attempt);
+        // 5. Create Attempt Object
+        QuizAttempt attempt = new QuizAttempt(
+            lesson.getLessonId(),
+            System.currentTimeMillis(),
+            score,
+            calculatedCorrectCount,
+            total
+        );
 
-            String message = "Score: " + score + "%\n";
-            if (score >= passingScore) {
-                message += "Congratulations! You Passed.";
-                student.markLessonCompleted(lesson.getLessonId());
-            } else {
-                message += "You Failed. Minimum required: " + passingScore + "%";
-            }
+        // 6. Update Memory
+        student.addQuizAttempt(lesson.getLessonId(), attempt);
 
-            JOptionPane.showMessageDialog(this, message, "Quiz Result", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error saving result: " + e.getMessage());
-            e.printStackTrace();
+        // 7. Check Passing
+        boolean passed = (score >= quiz.getPassingPercentage());
+        if (passed) {
+            student.markLessonCompleted(lesson.getLessonId());
         }
+
+        // 8. Save to Database (Save entire student object to persist attempts + completion)
+        db.updateUser(student);
+
+        // 9. Extra Feedback
+        if (passed) {
+            JOptionPane.showMessageDialog(this,
+                "Congratulations! You passed this lesson.",
+                "Success",
+                JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this,
+                "You Failed. Required: " + quiz.getPassingPercentage() + "%",
+                "Failed",
+                JOptionPane.WARNING_MESSAGE);
+        }
+           
+        this.dispose();
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void optAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optAActionPerformed
@@ -336,13 +356,13 @@ private void loadQuestion(int index) {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Quiz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QuizPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Quiz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QuizPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Quiz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QuizPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Quiz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QuizPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

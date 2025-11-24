@@ -41,6 +41,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
 
         edit.setText("View my Courses");
         edit.addActionListener(new java.awt.event.ActionListener() {
@@ -66,6 +67,10 @@ public class AdminDashboard extends javax.swing.JFrame {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+        logout.setText("Log out");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
             }
         });
 
@@ -86,6 +91,10 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addGap(197, 197, 197)
                 .addComponent(jButton2)
                 .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(150, 150, 150))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,6 +106,9 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addContainerGap(70, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                .addComponent(logout)
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -118,6 +130,15 @@ public class AdminDashboard extends javax.swing.JFrame {
         Login l=new Login();
         l.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+
+    // Open the Login Window
+    Login loginWindow = new Login();
+    loginWindow.setLocationRelativeTo(null); // center it
+    loginWindow.setVisible(true);
+    }//GEN-LAST:event_logoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,5 +180,6 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton logout;
     // End of variables declaration//GEN-END:variables
 }

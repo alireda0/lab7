@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import javax.swing.table.DefaultTableModel;
+import jsondatabase.JsonDatabaseManager;
 import models.Course;
 import models.Lesson;
 import models.Quiz;
@@ -247,74 +248,90 @@ public class Lessons extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
      int selectedRow = tableLessons.getSelectedRow();
-    
-    if (selectedRow == -1) {
-        JOptionPane.showMessageDialog(this, 
-            "Please select a lesson first!", 
-            "No Selection", 
-            JOptionPane.WARNING_MESSAGE);
-        return;
+
+if (selectedRow == -1) {
+    JOptionPane.showMessageDialog(this,
+        "Please select a lesson first!",
+        "No Selection",
+        JOptionPane.WARNING_MESSAGE);
+    return;
+}
+
+// Get lesson ID from table
+String lessonId = tableLessons.getValueAt(selectedRow, 0).toString();
+
+// Check if content was viewed
+if (!hasViewedContent(lessonId)) {
+    JOptionPane.showMessageDialog(this,
+        "Please view the lesson content first!",
+        "Content Not Viewed",
+        JOptionPane.WARNING_MESSAGE);
+    return;
+}
+
+// Find the lesson object
+Lesson selectedLesson = null;
+for (Lesson l : course.getLessons()) {
+    if (l.getLessonId().equals(lessonId)) {
+        selectedLesson = l;
+        break;
     }
-    
-    // Get lesson ID from table
-    String lessonId = tableLessons.getValueAt(selectedRow, 0).toString();
-    
-    // Check if content was viewed
-    if (!hasViewedContent(lessonId)) {
-        JOptionPane.showMessageDialog(this, 
-            "Please view the lesson content first!", 
-            "Content Not Viewed", 
-            JOptionPane.WARNING_MESSAGE);
-        return;
+}
+
+// Verify lesson was found
+if (selectedLesson == null) {
+    JOptionPane.showMessageDialog(this,
+        "Error: Lesson not found!",
+        "Error",
+        JOptionPane.ERROR_MESSAGE);
+    return;
+}
+
+// ===== Check if lesson has a quiz =====
+Quiz quiz = selectedLesson.getQuiz();
+
+if (quiz == null) {
+    JOptionPane.showMessageDialog(this,
+        "This lesson does not have a quiz yet.\n" +
+        "Please contact your instructor.",
+        "No Quiz Available",
+        JOptionPane.INFORMATION_MESSAGE);
+    return;
+}
+
+// Check if quiz has questions
+if (quiz.getQuestions() == null || quiz.getQuestions().isEmpty()) {
+    JOptionPane.showMessageDialog(this,
+        "This quiz has no questions yet.\n" +
+        "Please contact your instructor.",
+        "No Questions Available",
+        JOptionPane.INFORMATION_MESSAGE);
+    return;
+}
+
+// ===== NEW: Max attempts restriction =====
+JsonDatabaseManager db = new JsonDatabaseManager();
+if (!db.canTakeQuiz(
+        loggedStudent.getUserId(),
+        selectedLesson.getLessonId(),
+        quiz.getMaxAttempts())) {
+
+    JOptionPane.showMessageDialog(this,
+        "You have reached the maximum number of attempts for this quiz.",
+        "Quiz Locked",
+        JOptionPane.WARNING_MESSAGE);
+    return; // ✅ Do NOT open QuizPage
+}
+
+// ===== Open Quiz Page =====
+QuizPage quizPage = new QuizPage(loggedStudent, course, selectedLesson);
+quizPage.addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+        loadLessons(); // REFRESH TABLE when quiz is done
     }
-    
-    // Find the lesson object
-    Lesson selectedLesson = null;
-    for (Lesson l : course.getLessons()) {
-        if (l.getLessonId().equals(lessonId)) {
-            selectedLesson = l;
-            break;
-        }
-    }
-    
-    // Verify lesson was found
-    if (selectedLesson == null) {
-        JOptionPane.showMessageDialog(this,
-            "Error: Lesson not found!",
-            "Error",
-            JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    
-    // ===== FIX: Check if lesson has a quiz =====
-    Quiz quiz = selectedLesson.getQuiz();
-    
-    if (quiz == null) {
-        JOptionPane.showMessageDialog(this,
-            "This lesson does not have a quiz yet.\n" +
-            "Please contact your instructor.",
-            "No Quiz Available",
-            JOptionPane.INFORMATION_MESSAGE);
-        return;
-    }
-    
-    // Check if quiz has questions
-    if (quiz.getQuestions() == null || quiz.getQuestions().isEmpty()) {
-        JOptionPane.showMessageDialog(this,
-            "This quiz has no questions yet.\n" +
-            "Please contact your instructor.",
-            "No Questions Available",
-            JOptionPane.INFORMATION_MESSAGE);
-        return;
-    }
-    QuizPage quizPage = new QuizPage(loggedStudent, course, selectedLesson);
-    quizPage.addWindowListener(new java.awt.event.WindowAdapter() {
-        @Override
-        public void windowClosed(java.awt.event.WindowEvent windowEvent) {
-            loadLessons(); // REFRESH TABLE when quiz is done
-        }
-    });
-    quizPage.setVisible(true);
+});
+quizPage.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

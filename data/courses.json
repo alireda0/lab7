@@ -1,74 +1,464 @@
 [
     {
-        "description": "calclus 1",
+        "description": "Learn arrays, stacks, queues, lists, trees, and hash tables",
         "students": [
-            "1",
-            "2"
+            "3",
+            "357",
+            "45",
+            "12"
         ],
-        "title": "Maths1",
-        "courseId": "100",
-        "instructorId": "500",
+        "title": "Data Structures",
+        "courseId": "1",
+        "instructorId": "1",
+        "status": "APPROVED",
+        "lessons": [
+            {
+                "quiz": {
+                    "maxAttempts": 3,
+                    "passingPercentage": 60,
+                    "questions": [
+                        {
+                            "options": [
+                                "O(1)",
+                                "O(n)",
+                                "O(log n)",
+                                "O(n^2)"
+                            ],
+                            "correctOptionIndex": 0,
+                            "questionText": "What is the time complexity to access an element in an array by index?"
+                        },
+                        {
+                            "options": [
+                                "They can grow dynamically",
+                                "They have a fixed size once created",
+                                "They can hold different data types in one array",
+                                "They are always 2D"
+                            ],
+                            "correctOptionIndex": 1,
+                            "questionText": "Which statement is true regarding Java Arrays?"
+                        },
+                        {
+                            "options": [
+                                "Index 0",
+                                "Index 1",
+                                "Index -1",
+                                "Any index"
+                            ],
+                            "correctOptionIndex": 0,
+                            "questionText": "At which index does a Java array start?"
+                        },
+                        {
+                            "options": [
+                                "ArrayIndexOutOfBoundsException",
+                                "NullPointerException",
+                                "IllegalArgumentException",
+                                "No exception is thrown"
+                            ],
+                            "correctOptionIndex": 0,
+                            "questionText": "What exception is thrown when accessing an invalid index in an array?"
+                        }
+                    ]
+                },
+                "lessonId": "1",
+                "title": "Arrays",
+                "content": "Introduction to arrays, indexing, traversal, and basic operations."
+            },
+            {
+                "quiz": {
+                    "maxAttempts": 3,
+                    "passingPercentage": 60,
+                    "questions": [
+                        {
+                            "options": [
+                                "First-In First-Out",
+                                "First-In Last-Out",
+                                "Random Access",
+                                "Last-In First-Out"
+                            ],
+                            "correctOptionIndex": 0,
+                            "questionText": "What is the principle of a queue?"
+                        },
+                        {
+                            "options": [
+                                "enqueue() and dequeue()",
+                                "push() and pop()",
+                                "addFront() and removeBack()",
+                                "insert() and deleteMiddle()"
+                            ],
+                            "correctOptionIndex": 0,
+                            "questionText": "Which pair of operations are associated with queues?"
+                        },
+                        {
+                            "options": [
+                                "Array-based queue",
+                                "Linked list-based queue",
+                                "Both of the above",
+                                "None of the above"
+                            ],
+                            "correctOptionIndex": 2,
+                            "questionText": "Which implementations are commonly used for queues?"
+                        }
+                    ]
+                },
+                "lessonId": "2",
+                "title": "Queues",
+                "content": "Understanding queue operations, implementations, and use cases."
+            },
+            {
+                "quiz": {
+                    "maxAttempts": 3,
+                    "passingPercentage": 60,
+                    "questions": [
+                        {
+                            "options": [
+                                "First-In First-Out",
+                                "First-In Last-Out",
+                                "Last-In First-Out",
+                                "Random Access"
+                            ],
+                            "correctOptionIndex": 2,
+                            "questionText": "What is the principle of a stack?"
+                        },
+                        {
+                            "options": [
+                                "push() and pop()",
+                                "enqueue() and dequeue()",
+                                "insert() and delete()",
+                                "add() and removeFront()"
+                            ],
+                            "correctOptionIndex": 0,
+                            "questionText": "Which operations are associated with stacks?"
+                        },
+                        {
+                            "options": [
+                                "Function call recursion",
+                                "Storing key\u2013value pairs",
+                                "Implementing queues",
+                                "Sorting arrays in O(1)"
+                            ],
+                            "correctOptionIndex": 0,
+                            "questionText": "Which of the following is a common use case for a stack?"
+                        }
+                    ]
+                },
+                "lessonId": "3",
+                "title": "Stacks",
+                "content": "LIFO behavior, stack operations, and call stack concepts."
+            },
+            {
+                "quiz": {
+                    "maxAttempts": 3,
+                    "passingPercentage": 60,
+                    "questions": [
+                        {
+                            "options": [
+                                "Contiguous memory allocation",
+                                "Nodes connected with pointers",
+                                "Two-dimensional matrix",
+                                "Key\u2013value storage"
+                            ],
+                            "correctOptionIndex": 1,
+                            "questionText": "What is a singly linked list based on?"
+                        },
+                        {
+                            "options": [
+                                "Each node stores data and a reference to the next node",
+                                "Nodes are always stored in contiguous memory",
+                                "The head must always be null",
+                                "It can only store integers"
+                            ],
+                            "correctOptionIndex": 0,
+                            "questionText": "Which statement is true about a singly linked list?"
+                        },
+                        {
+                            "options": [
+                                "O(1)",
+                                "O(log n)",
+                                "O(n)",
+                                "O(n log n)"
+                            ],
+                            "correctOptionIndex": 2,
+                            "questionText": "What is the time complexity of searching for an element in a singly linked list?"
+                        }
+                    ]
+                },
+                "lessonId": "4",
+                "title": "Linked Lists",
+                "content": "Singly and doubly linked lists, operations, and traversal."
+            },
+            {
+                "quiz": {
+                    "maxAttempts": 3,
+                    "passingPercentage": 60,
+                    "questions": [
+                        {
+                            "options": [
+                                "At most two children",
+                                "Exactly three children",
+                                "Unlimited children",
+                                "No children"
+                            ],
+                            "correctOptionIndex": 0,
+                            "questionText": "In a binary tree, how many children can each node have at most?"
+                        },
+                        {
+                            "options": [
+                                "Left child <= root <= right child (for some key ordering)",
+                                "All children are larger than the root",
+                                "All children are smaller than the root",
+                                "No particular ordering"
+                            ],
+                            "correctOptionIndex": 0,
+                            "questionText": "Which property holds for a Binary Search Tree (BST)?"
+                        },
+                        {
+                            "options": [
+                                "Preorder, inorder, postorder",
+                                "Level, diagonal, circular",
+                                "Preorder only",
+                                "Random traversal"
+                            ],
+                            "correctOptionIndex": 0,
+                            "questionText": "Which of the following are common tree traversal orders?"
+                        }
+                    ]
+                },
+                "lessonId": "5",
+                "title": "Trees and Binary Search Trees",
+                "content": "Tree terminology, binary trees, and basic BST operations."
+            },
+            {
+                "quiz": {
+                    "maxAttempts": 3,
+                    "passingPercentage": 60,
+                    "questions": [
+                        {
+                            "options": [
+                                "A random number",
+                                "A function that maps a key to an index",
+                                "A search tree",
+                                "A sorting method"
+                            ],
+                            "correctOptionIndex": 1,
+                            "questionText": "What is a hash function?"
+                        },
+                        {
+                            "options": [
+                                "When two keys produce the same hash value",
+                                "When a key is not found",
+                                "When the table is empty",
+                                "When the array is full"
+                            ],
+                            "correctOptionIndex": 0,
+                            "questionText": "What is a hash collision?"
+                        },
+                        {
+                            "options": [
+                                "Chaining and open addressing",
+                                "Recursion and iteration",
+                                "Sorting and merging",
+                                "Stacking and queuing"
+                            ],
+                            "correctOptionIndex": 0,
+                            "questionText": "Which are common techniques to handle collisions?"
+                        }
+                    ]
+                },
+                "lessonId": "6",
+                "title": "Hash Tables",
+                "content": "Hash functions, collisions, and basic hash table operations."
+            }
+        ]
+    },
+    {
+        "description": "Learn the basics of Java, including variables, loops, and OOP concepts.",
+        "students": [
+            "1001",
+            "1002",
+            "357"
+        ],
+        "title": "Introduction to Java Programming",
+        "courseId": "C1001",
+        "instructorId": "101",
         "status": "APPROVED",
         "lessons": [
             {
                 "quiz": {
                     "maxAttempts": 0,
-                    "passingPercentage": 60,
-                    "questions": [
-                        {
-                            "options": [
-                                "2",
-                                "1",
-                                "3",
-                                "0"
-                            ],
-                            "correctOptionIndex": 0,
-                            "questionText": "1+1"
-                        },
-                        {
-                            "options": [
-                                "1",
-                                "0",
-                                "infinity",
-                                "-1"
-                            ],
-                            "correctOptionIndex": 0,
-                            "questionText": "9/9"
-                        }
-                    ]
+                    "passingPercentage": 50,
+                    "questions": [{
+                        "options": [
+                            "java",
+                            "javac",
+                            "compile",
+                            "run"
+                        ],
+                        "correctOptionIndex": 1,
+                        "questionText": "Which command compiles a Java file?"
+                    }]
                 },
-                "lessonId": "L1",
-                "title": "limits",
-                "content": "werdffgh"
+                "lessonId": "L01",
+                "title": "Setup and Hello World",
+                "content": "In this lesson, we will install the JDK."
             },
             {
                 "quiz": {
-                    "maxAttempts": 0,
-                    "passingPercentage": 60,
-                    "questions": [{
-                        "options": [
-                            "+ve number",
-                            "-ve number",
-                            "0",
-                            "not a number"
-                        ],
-                        "correctOptionIndex": 0,
-                        "questionText": "1 is a"
-                    }]
+                    "maxAttempts": 2,
+                    "passingPercentage": 70,
+                    "questions": [
+                        {
+                            "options": [
+                                "16 bit",
+                                "32 bit",
+                                "64 bit",
+                                "8 bit"
+                            ],
+                            "correctOptionIndex": 1,
+                            "questionText": "What is the size of an int in Java?"
+                        },
+                        {
+                            "options": [
+                                "int",
+                                "boolean",
+                                "String",
+                                "char"
+                            ],
+                            "correctOptionIndex": 2,
+                            "questionText": "Which is not a primitive type?"
+                        }
+                    ]
                 },
-                "lessonId": "L2",
-                "title": "basic",
-                "content": "gfd"
+                "lessonId": "L02",
+                "title": "Variables and Data Types",
+                "content": "Understanding int, double, boolean."
             }
         ]
     },
     {
-        "description": "integration",
+        "description": "Deep dive into Lists, Sets, Maps, and Trees.",
         "students": [],
-        "title": "Maths2",
-        "courseId": "200",
-        "instructorId": "500",
-        "status": "REJECTED",
+        "title": "Advanced Data Structures",
+        "courseId": "C1002",
+        "instructorId": "101",
+        "status": "PENDING",
+        "lessons": [{
+            "quiz": {
+                "maxAttempts": 3,
+                "passingPercentage": 60,
+                "questions": [{
+                    "options": [
+                        "ArrayList",
+                        "LinkedList",
+                        "Vector",
+                        "Array"
+                    ],
+                    "correctOptionIndex": 1,
+                    "questionText": "Which is faster for inserting elements in the middle?"
+                }]
+            },
+            "lessonId": "L01",
+            "title": "ArrayList vs LinkedList",
+            "content": "Comparing performance characteristics."
+        }]
+    },
+    {
+        "description": "Normalization, ER diagrams, and SQL basics.",
+        "students": ["1003"],
+        "title": "Database Design Fundamentals",
+        "courseId": "C1003",
+        "instructorId": "102",
+        "status": "APPROVED",
         "lessons": []
+    },
+    {
+        "description": "integeration and series",
+        "students": [],
+        "title": "maths 2",
+        "courseId": "c109",
+        "instructorId": "1",
+        "status": "PENDING",
+        "lessons": [{
+            "quiz": {
+                "maxAttempts": 0,
+                "passingPercentage": 60,
+                "questions": [
+                    {
+                        "options": [
+                            "gh",
+                            "nh",
+                            "jewe",
+                            "ghjk"
+                        ],
+                        "correctOptionIndex": 2,
+                        "questionText": "dfghjkl"
+                    },
+                    {
+                        "options": [
+                            "gg",
+                            "wwwe",
+                            "eee",
+                            "rrrr"
+                        ],
+                        "correctOptionIndex": 0,
+                        "questionText": "tttt"
+                    }
+                ]
+            },
+            "lessonId": "L1",
+            "title": "integeration by parts",
+            "content": "default"
+        }]
+<<<<<<< Updated upstream
+    },
+    {
+        "description": "kmaps",
+        "students": ["357"],
+        "title": "logic 1",
+        "courseId": "c1000",
+        "instructorId": "1",
+        "status": "APPROVED",
+        "lessons": [{
+            "quiz": {
+                "maxAttempts": 0,
+                "passingPercentage": 60,
+                "questions": [
+                    {
+                        "options": [
+                            "wwww",
+                            "eeee",
+                            "rrrr",
+                            "tttt"
+                        ],
+                        "correctOptionIndex": 0,
+                        "questionText": "asdfghyu"
+                    },
+                    {
+                        "options": [
+                            "iii",
+                            "ppp",
+                            "[]]",
+                            "tty"
+                        ],
+                        "correctOptionIndex": 1,
+                        "questionText": "ertrtrr"
+                    },
+                    {
+                        "options": [
+                            "ss",
+                            "rr",
+                            "yy",
+                            "ii"
+                        ],
+                        "correctOptionIndex": 2,
+                        "questionText": "rtyuyu"
+                    }
+                ]
+            },
+            "lessonId": "L1",
+            "title": "logic gates",
+            "content": "and-or-not gates"
+        }]
+=======
+>>>>>>> Stashed changes
     }
 ]
