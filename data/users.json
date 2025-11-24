@@ -23,12 +23,7 @@
     },
     {
         "role": "STUDENT",
-        "certificates": [{
-            "studentId": 357,
-            "certificateId": "4013ee8f-3a2f-4d4d-a1e9-c535ee0bceaa",
-            "issueDate": "2025-11-24",
-            "courseId": "c1000"
-        }],
+        "certificates": [],
         "quizAttempts": [
             {
                 "score": 100,
@@ -78,42 +73,17 @@
                 "correctCount": 3,
                 "lessonId": "3",
                 "timestamp": 1763949118022
-            },
-            {
-                "score": 100,
-                "totalQuestions": 3,
-                "correctCount": 3,
-                "lessonId": "4",
-                "timestamp": 1763956480262
-            },
-            {
-                "score": 100,
-                "totalQuestions": 3,
-                "correctCount": 3,
-                "lessonId": "L1",
-                "timestamp": 1763954106027
-            },
-            {
-                "score": 100,
-                "totalQuestions": 1,
-                "correctCount": 1,
-                "lessonId": "L01",
-                "timestamp": 1763956449025
             }
         ],
         "userId": 357,
         "enrolledCourseIds": [
             "C1001",
-            "1",
-            "c1000"
+            "1"
         ],
         "completedLessonIds": [
             "1",
             "3",
-            "2",
-            "L1",
-            "L01",
-            "4"
+            "2"
         ],
         "email": "reda@gmail.com",
         "passwordHash": "8a4665c1246937c22afaff4c257532f076e5735b3a9f778da393b7a17d438847",
@@ -207,12 +177,5 @@
         "email": "mos@gmail.com",
         "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
         "username": "miso"
-    },
-    {
-        "role": "ADMIN",
-        "userId": 9,
-        "email": "ass@gmail.com",
-        "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-        "username": "ashraf"
     }
 ]

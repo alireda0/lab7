@@ -408,57 +408,5 @@
             "title": "integeration by parts",
             "content": "default"
         }]
-<<<<<<< Updated upstream
-    },
-    {
-        "description": "kmaps",
-        "students": ["357"],
-        "title": "logic 1",
-        "courseId": "c1000",
-        "instructorId": "1",
-        "status": "APPROVED",
-        "lessons": [{
-            "quiz": {
-                "maxAttempts": 0,
-                "passingPercentage": 60,
-                "questions": [
-                    {
-                        "options": [
-                            "wwww",
-                            "eeee",
-                            "rrrr",
-                            "tttt"
-                        ],
-                        "correctOptionIndex": 0,
-                        "questionText": "asdfghyu"
-                    },
-                    {
-                        "options": [
-                            "iii",
-                            "ppp",
-                            "[]]",
-                            "tty"
-                        ],
-                        "correctOptionIndex": 1,
-                        "questionText": "ertrtrr"
-                    },
-                    {
-                        "options": [
-                            "ss",
-                            "rr",
-                            "yy",
-                            "ii"
-                        ],
-                        "correctOptionIndex": 2,
-                        "questionText": "rtyuyu"
-                    }
-                ]
-            },
-            "lessonId": "L1",
-            "title": "logic gates",
-            "content": "and-or-not gates"
-        }]
-=======
->>>>>>> Stashed changes
     }
 ]
