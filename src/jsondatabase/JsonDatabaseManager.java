@@ -550,7 +550,6 @@ public class JsonDatabaseManager {
     return used < maxAttempts;
 }
    public boolean isCourseCompleted(Student s, Course c) {
-<<<<<<< Updated upstream
     for (Lesson l : c.getLessons()) {
         if (!s.hasCompletedLesson(l.getLessonId()))
             return false;
@@ -603,32 +602,4 @@ public class JsonDatabaseManager {
         certifiedCourses.add(courseId); // so we don't add duplicates in this loop
     }
 }
-=======
-    for (Lesson lesson : c.getLessons()) {
-        if (!s.hasCompletedLesson(lesson.getLessonId())) {
-            return false;
-        }
-    }
-    return true;
-}
-   public Certificate generateCertificate(Student s, Course c) {
-    String certId = UUID.randomUUID().toString();
-    String date = java.time.LocalDate.now().toString();
-
-    Certificate cert = new Certificate(
-            certId,
-            s.getUserId(),
-            c.getCourseId(),
-            date
-    );
-
-    s.addCertificate(cert);
-
-    // Save user
-    updateUser(s);
-
-    return cert;
-}
-   
->>>>>>> Stashed changes
 }
