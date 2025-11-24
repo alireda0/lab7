@@ -454,15 +454,28 @@ public class JsonDatabaseManager {
     }
     
     public void updateUser(User updated) {
-        List<User> list = loadUsers();
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getUserId() == updated.getUserId()) {
-                list.set(i, updated);
-                saveUsers(list);
-                return;
-            }
+    // 1) If this is a student, auto-attach certificates before saving
+    if (updated instanceof Student) {
+        ensureCertificatesForStudentInMemory((Student) updated);
+    }
+    List<User> list = loadUsers();
+    boolean found = false;
+
+    for (int i = 0; i < list.size(); i++) {
+        if (list.get(i).getUserId() == updated.getUserId()) {
+            list.set(i, updated);
+            found = true;
+            break;
         }
     }
+
+    if (!found) {
+        list.add(updated);
+    }
+
+    saveUsers(list);
+}
+
     public double getLessonAverageScore(String lessonId) {
         List<User> users = loadUsers();
         double totalScore = 0;
@@ -535,5 +548,58 @@ public class JsonDatabaseManager {
     if (maxAttempts <= 0) return true; // treat 0 as unlimited
     int used = getQuizAttemptCount(studentId, lessonId);
     return used < maxAttempts;
+}
+   public boolean isCourseCompleted(Student s, Course c) {
+    for (Lesson l : c.getLessons()) {
+        if (!s.hasCompletedLesson(l.getLessonId()))
+            return false;
+    }
+    return true;
+}
+
+   private void ensureCertificatesForStudentInMemory(Student s) {
+    if (s == null) return;
+
+    // 1) Get list of enrolled courseIds
+    List<String> enrolled = s.getEnrolledCourseIds();
+    if (enrolled == null || enrolled.isEmpty()) {
+        return;
+    }
+
+    // 2) Build a set of courseIds that already have a certificate
+    Set<String> certifiedCourses = s.getCertificates()
+            .stream()
+            .map(Certificate::getCourseId)
+            .collect(Collectors.toSet());
+
+    // 3) Load all courses to check completion
+    List<Course> allCourses = loadCourses();
+
+    for (Course c : allCourses) {
+        String courseId = c.getCourseId();
+
+        // Student must be enrolled in this course
+        if (!enrolled.contains(courseId)) continue;
+
+        // Skip courses with no lessons
+        if (c.getLessons() == null || c.getLessons().isEmpty()) continue;
+
+        // Course must be fully completed by this student
+        if (!isCourseCompleted(s, c)) continue;
+
+        // If certificate for this course already exists, skip
+        if (certifiedCourses.contains(courseId)) continue;
+
+        // 4) Create a new certificate for this course
+        Certificate cert = new Certificate(
+                java.util.UUID.randomUUID().toString(),
+                s.getUserId(),
+                courseId,
+                java.time.LocalDate.now().toString()
+        );
+
+        s.addCertificate(cert);
+        certifiedCourses.add(courseId); // so we don't add duplicates in this loop
+    }
 }
 }

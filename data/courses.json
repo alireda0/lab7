@@ -6,27 +6,23 @@
             "357",
             "45",
             "12"
-        "description": "calclus 1",
-        "students": [
-            "1",
-            "2"
         ],
-        "title": "Maths1",
-        "courseId": "100",
-        "instructorId": "500",
+        "title": "Data Structures",
+        "courseId": "1",
+        "instructorId": "1",
         "status": "APPROVED",
         "lessons": [
             {
                 "quiz": {
-                    "maxAttempts": 0,
+                    "maxAttempts": 3,
                     "passingPercentage": 60,
                     "questions": [
                         {
                             "options": [
-                                "2",
-                                "1",
-                                "3",
-                                "0"
+                                "O(1)",
+                                "O(n)",
+                                "O(log n)",
+                                "O(n^2)"
                             ],
                             "correctOptionIndex": 0,
                             "questionText": "What is the time complexity to access an element in an array by index?"
@@ -66,23 +62,6 @@
                 "lessonId": "1",
                 "title": "Arrays",
                 "content": "Introduction to arrays, indexing, traversal, and basic operations."
-                            "questionText": "1+1"
-                        },
-                        {
-                            "options": [
-                                "1",
-                                "0",
-                                "infinity",
-                                "-1"
-                            ],
-                            "correctOptionIndex": 0,
-                            "questionText": "9/9"
-                        }
-                    ]
-                },
-                "lessonId": "L1",
-                "title": "limits",
-                "content": "werdffgh"
             },
             {
                 "quiz": {
@@ -316,30 +295,167 @@
                         ],
                         "correctOptionIndex": 1,
                         "questionText": "Which command compiles a Java file?"
-                    "questions": [{
-                        "options": [
-                            "+ve number",
-                            "-ve number",
-                            "0",
-                            "not a number"
-                        ],
-                        "correctOptionIndex": 0,
-                        "questionText": "1 is a"
                     }]
                 },
-                "lessonId": "L2",
-                "title": "basic",
-                "content": "gfd"
+                "lessonId": "L01",
+                "title": "Setup and Hello World",
+                "content": "In this lesson, we will install the JDK."
+            },
+            {
+                "quiz": {
+                    "maxAttempts": 2,
+                    "passingPercentage": 70,
+                    "questions": [
+                        {
+                            "options": [
+                                "16 bit",
+                                "32 bit",
+                                "64 bit",
+                                "8 bit"
+                            ],
+                            "correctOptionIndex": 1,
+                            "questionText": "What is the size of an int in Java?"
+                        },
+                        {
+                            "options": [
+                                "int",
+                                "boolean",
+                                "String",
+                                "char"
+                            ],
+                            "correctOptionIndex": 2,
+                            "questionText": "Which is not a primitive type?"
+                        }
+                    ]
+                },
+                "lessonId": "L02",
+                "title": "Variables and Data Types",
+                "content": "Understanding int, double, boolean."
             }
         ]
     },
     {
-        "description": "integration",
+        "description": "Deep dive into Lists, Sets, Maps, and Trees.",
         "students": [],
-        "title": "Maths2",
-        "courseId": "200",
-        "instructorId": "500",
-        "status": "REJECTED",
+        "title": "Advanced Data Structures",
+        "courseId": "C1002",
+        "instructorId": "101",
+        "status": "PENDING",
+        "lessons": [{
+            "quiz": {
+                "maxAttempts": 3,
+                "passingPercentage": 60,
+                "questions": [{
+                    "options": [
+                        "ArrayList",
+                        "LinkedList",
+                        "Vector",
+                        "Array"
+                    ],
+                    "correctOptionIndex": 1,
+                    "questionText": "Which is faster for inserting elements in the middle?"
+                }]
+            },
+            "lessonId": "L01",
+            "title": "ArrayList vs LinkedList",
+            "content": "Comparing performance characteristics."
+        }]
+    },
+    {
+        "description": "Normalization, ER diagrams, and SQL basics.",
+        "students": ["1003"],
+        "title": "Database Design Fundamentals",
+        "courseId": "C1003",
+        "instructorId": "102",
+        "status": "APPROVED",
         "lessons": []
+    },
+    {
+        "description": "integeration and series",
+        "students": [],
+        "title": "maths 2",
+        "courseId": "c109",
+        "instructorId": "1",
+        "status": "PENDING",
+        "lessons": [{
+            "quiz": {
+                "maxAttempts": 0,
+                "passingPercentage": 60,
+                "questions": [
+                    {
+                        "options": [
+                            "gh",
+                            "nh",
+                            "jewe",
+                            "ghjk"
+                        ],
+                        "correctOptionIndex": 2,
+                        "questionText": "dfghjkl"
+                    },
+                    {
+                        "options": [
+                            "gg",
+                            "wwwe",
+                            "eee",
+                            "rrrr"
+                        ],
+                        "correctOptionIndex": 0,
+                        "questionText": "tttt"
+                    }
+                ]
+            },
+            "lessonId": "L1",
+            "title": "integeration by parts",
+            "content": "default"
+        }]
+    },
+    {
+        "description": "kmaps",
+        "students": ["357"],
+        "title": "logic 1",
+        "courseId": "c1000",
+        "instructorId": "1",
+        "status": "APPROVED",
+        "lessons": [{
+            "quiz": {
+                "maxAttempts": 0,
+                "passingPercentage": 60,
+                "questions": [
+                    {
+                        "options": [
+                            "wwww",
+                            "eeee",
+                            "rrrr",
+                            "tttt"
+                        ],
+                        "correctOptionIndex": 0,
+                        "questionText": "asdfghyu"
+                    },
+                    {
+                        "options": [
+                            "iii",
+                            "ppp",
+                            "[]]",
+                            "tty"
+                        ],
+                        "correctOptionIndex": 1,
+                        "questionText": "ertrtrr"
+                    },
+                    {
+                        "options": [
+                            "ss",
+                            "rr",
+                            "yy",
+                            "ii"
+                        ],
+                        "correctOptionIndex": 2,
+                        "questionText": "rtyuyu"
+                    }
+                ]
+            },
+            "lessonId": "L1",
+            "title": "logic gates",
+            "content": "and-or-not gates"
+        }]
     }
 ]
