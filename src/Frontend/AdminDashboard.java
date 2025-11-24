@@ -40,6 +40,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         edit = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
 
         edit.setText("View my Courses");
         edit.addActionListener(new java.awt.event.ActionListener() {
@@ -61,6 +62,13 @@ public class AdminDashboard extends javax.swing.JFrame {
             }
         });
 
+        logout.setText("Log out");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,7 +81,10 @@ public class AdminDashboard extends javax.swing.JFrame {
                         .addGap(59, 59, 59))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(150, 150, 150))))
+                        .addGap(150, 150, 150))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,7 +93,9 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                .addComponent(logout)
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -98,6 +111,16 @@ public class AdminDashboard extends javax.swing.JFrame {
         PendingCoursesss p= new PendingCoursesss(loggedAdmin);
         p.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+
+    // Open the Login Window
+    Login loginWindow = new Login();
+    loginWindow.setLocationRelativeTo(null); // center it
+    loginWindow.setVisible(true);
+    }//GEN-LAST:event_logoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,5 +161,6 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton edit;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton logout;
     // End of variables declaration//GEN-END:variables
 }
