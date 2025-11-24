@@ -5,6 +5,7 @@
 package Frontend;
 
 import javax.swing.*;
+import models.Admin;
 
 import models.Student;
 import models.Instructor;
@@ -51,7 +52,24 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel4.setText("Username:");
 
-        cmbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Role", "Student", "Instructor" }));
+        textUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textUsernameActionPerformed(evt);
+            }
+        });
+
+        textPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textPasswordActionPerformed(evt);
+            }
+        });
+
+        cmbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Role", "Student", "Instructor", "Admin" }));
+        cmbRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRoleActionPerformed(evt);
+            }
+        });
 
         btnLogin.setText("LOGIN");
         btnLogin.setBorder(new javax.swing.border.MatteBorder(null));
@@ -201,6 +219,9 @@ if (!found.getPasswordHash().equals(hashedInput)) {
             } else if (selectedRole.equalsIgnoreCase("INSTRUCTOR")) {
                 InstructorDashboard id = new InstructorDashboard((Instructor) found);
                 id.setVisible(true);
+            } else if (selectedRole.equalsIgnoreCase("ADMIN")) {
+                AdminDashboard ad = new AdminDashboard((Admin) found);
+                ad.setVisible(true);
             }
 
         this.dispose(); // close login frame
@@ -216,6 +237,18 @@ if (!found.getPasswordHash().equals(hashedInput)) {
         SignUp s=new SignUp();
         s.setVisible(true);
     }//GEN-LAST:event_signupActionPerformed
+
+    private void cmbRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRoleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbRoleActionPerformed
+
+    private void textUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textUsernameActionPerformed
+
+    private void textPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textPasswordActionPerformed
 private String hashPassword(String rawPassword) {
     try {
         java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA-256");

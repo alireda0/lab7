@@ -23,6 +23,11 @@ public class JsonDatabaseManager {
     // ===================================================================
     // Helpers: ensure data folder/files
     // ===================================================================
+    
+    // -------------------------------------------------------------------
+    // Ensure folder and files exist
+    // -------------------------------------------------------------------
+    
     private void ensureDataFilesExist() {
         try {
             File folder = new File(DATA_FOLDER);
@@ -400,12 +405,59 @@ public class JsonDatabaseManager {
         saveCourses(list);
     }
 
-    public void updateCourse(Course updated) {
-        List<Course> list = loadCourses();
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getCourseId().equals(updated.getCourseId())) {
-                list.set(i, updated);
-                saveCourses(list);
+
+    public void updateCourse(Course updatedCourse) {
+    List<Course> courses = loadCourses(); // reload fresh list from JSON
+    boolean found = false;
+
+    for (int i = 0; i < courses.size(); i++) {
+        if (courses.get(i).getCourseId().equals(updatedCourse.getCourseId())) {
+            courses.set(i, updatedCourse); // replace old course
+            found = true;
+            break;
+        }
+    }
+
+    if (found) {
+        saveCourses(courses); // persist changes to JSON
+    } else {
+        System.out.println("Course not found in DB!");
+    }
+    }
+
+    public List<Course> getVisibleCoursesForStudents() {
+        return loadCourses().stream()
+                .filter(c -> c.getStatus().equalsIgnoreCase("APPROVED"))
+                .collect(Collectors.toList());
+    }
+
+    public void approveCourse(String courseId) {
+        Course c = getCourseById(courseId);
+        if (c != null) {
+            c.setStatus("APPROVED");
+            updateCourse(c);
+        }
+    }
+
+    public void rejectCourse(String courseId) {
+        Course c = getCourseById(courseId);
+        if (c != null) {
+            c.setStatus("REJECTED");
+            updateCourse(c);
+        }
+    }
+
+    // ===================================================================
+    // QUIZ SYSTEM
+    // ===================================================================
+    public void recordQuizAttempt(int studentId, String lessonId, QuizAttempt attempt) {
+
+        List<User> users = loadUsers();
+
+        for (User u : users) {
+            if (u instanceof Student s && s.getUserId() == studentId) {
+                s.addQuizAttempt(lessonId, attempt);
+                saveUsers(users);
                 return;
             }
         }

@@ -1,48 +1,45 @@
 [
     {
-        "description": "Learn arrays, stacks, queues, lists",
+        "description": "calclus 1",
         "students": [
-            "3",
-            "357",
-            "357",
-            "357",
-            "357"
+            "1",
+            "2"
         ],
-        "title": "Data Structures",
-        "courseId": "1",
-        "instructorId": "1",
+        "title": "Maths1",
+        "courseId": "100",
+        "instructorId": "500",
         "status": "APPROVED",
         "lessons": [
             {
                 "quiz": {
-                    "maxAttempts": 3,
+                    "maxAttempts": 0,
                     "passingPercentage": 60,
                     "questions": [
                         {
                             "options": [
-                                "O(1)",
-                                "O(n)",
-                                "O(log n)",
-                                "O(n^2)"
+                                "2",
+                                "1",
+                                "3",
+                                "0"
                             ],
                             "correctOptionIndex": 0,
-                            "questionText": "What is the time complexity to access an element in an array?"
+                            "questionText": "1+1"
                         },
                         {
                             "options": [
-                                "They can grow dynamically",
-                                "They have a fixed size once created",
-                                "They can hold different data types",
-                                "They use pointers for index access"
+                                "1",
+                                "0",
+                                "infinity",
+                                "-1"
                             ],
-                            "correctOptionIndex": 1,
-                            "questionText": "Which statement is true regarding Java Arrays?"
+                            "correctOptionIndex": 0,
+                            "questionText": "9/9"
                         }
                     ]
                 },
-                "lessonId": "1",
-                "title": "Arrays",
-                "content": "Introduction to arrays"
+                "lessonId": "L1",
+                "title": "limits",
+                "content": "werdffgh"
             },
             {
                 "quiz": {
@@ -50,158 +47,28 @@
                     "passingPercentage": 60,
                     "questions": [{
                         "options": [
-                            "rtyui",
-                            "gggg",
-                            "sdfg",
-                            "hhhh"
-                        ],
-                        "correctOptionIndex": 2,
-                        "questionText": "wertyui"
-                    }]
-                },
-                "lessonId": "2",
-                "title": "queues",
-                "content": "Default"
-            }
-        ]
-    },
-    {
-        "description": "Learn the basics of Java, including variables, loops, and OOP concepts.",
-        "students": [
-            "1001",
-            "1002",
-            "357"
-        ],
-        "title": "Introduction to Java Programming",
-        "courseId": "C1001",
-        "instructorId": "101",
-        "status": "APPROVED",
-        "lessons": [
-            {
-                "quiz": {
-                    "maxAttempts": 0,
-                    "passingPercentage": 50,
-                    "questions": [{
-                        "options": [
-                            "java",
-                            "javac",
-                            "compile",
-                            "run"
-                        ],
-                        "correctOptionIndex": 1,
-                        "questionText": "Which command compiles a Java file?"
-                    }]
-                },
-                "lessonId": "L01",
-                "title": "Setup and Hello World",
-                "content": "In this lesson, we will install the JDK."
-            },
-            {
-                "quiz": {
-                    "maxAttempts": 2,
-                    "passingPercentage": 70,
-                    "questions": [
-                        {
-                            "options": [
-                                "16 bit",
-                                "32 bit",
-                                "64 bit",
-                                "8 bit"
-                            ],
-                            "correctOptionIndex": 1,
-                            "questionText": "What is the size of an int in Java?"
-                        },
-                        {
-                            "options": [
-                                "int",
-                                "boolean",
-                                "String",
-                                "char"
-                            ],
-                            "correctOptionIndex": 2,
-                            "questionText": "Which is not a primitive type?"
-                        }
-                    ]
-                },
-                "lessonId": "L02",
-                "title": "Variables and Data Types",
-                "content": "Understanding int, double, boolean."
-            }
-        ]
-    },
-    {
-        "description": "Deep dive into Lists, Sets, Maps, and Trees.",
-        "students": [],
-        "title": "Advanced Data Structures",
-        "courseId": "C1002",
-        "instructorId": "101",
-        "status": "PENDING",
-        "lessons": [{
-            "quiz": {
-                "maxAttempts": 3,
-                "passingPercentage": 60,
-                "questions": [{
-                    "options": [
-                        "ArrayList",
-                        "LinkedList",
-                        "Vector",
-                        "Array"
-                    ],
-                    "correctOptionIndex": 1,
-                    "questionText": "Which is faster for inserting elements in the middle?"
-                }]
-            },
-            "lessonId": "L01",
-            "title": "ArrayList vs LinkedList",
-            "content": "Comparing performance characteristics."
-        }]
-    },
-    {
-        "description": "Normalization, ER diagrams, and SQL basics.",
-        "students": ["1003"],
-        "title": "Database Design Fundamentals",
-        "courseId": "C1003",
-        "instructorId": "102",
-        "status": "APPROVED",
-        "lessons": []
-    },
-    {
-        "description": "integeration and series",
-        "students": [],
-        "title": "maths 2",
-        "courseId": "c109",
-        "instructorId": "1",
-        "status": "PENDING",
-        "lessons": [{
-            "quiz": {
-                "maxAttempts": 0,
-                "passingPercentage": 60,
-                "questions": [
-                    {
-                        "options": [
-                            "gh",
-                            "nh",
-                            "jewe",
-                            "ghjk"
-                        ],
-                        "correctOptionIndex": 2,
-                        "questionText": "dfghjkl"
-                    },
-                    {
-                        "options": [
-                            "gg",
-                            "wwwe",
-                            "eee",
-                            "rrrr"
+                            "+ve number",
+                            "-ve number",
+                            "0",
+                            "not a number"
                         ],
                         "correctOptionIndex": 0,
-                        "questionText": "tttt"
-                    }
-                ]
-            },
-            "lessonId": "L1",
-            "title": "integeration by parts",
-            "content": "default"
-        }]
+                        "questionText": "1 is a"
+                    }]
+                },
+                "lessonId": "L2",
+                "title": "basic",
+                "content": "gfd"
+            }
+        ]
+    },
+    {
+        "description": "integration",
+        "students": [],
+        "title": "Maths2",
+        "courseId": "200",
+        "instructorId": "500",
+        "status": "REJECTED",
+        "lessons": []
     }
 ]

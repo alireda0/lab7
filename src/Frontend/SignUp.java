@@ -11,6 +11,7 @@ import java.util.List;
 import models.User;
 import models.Student;
 import models.Instructor;
+import models.Admin;
 import jsondatabase.JsonDatabaseManager;
 /**
  *
@@ -74,7 +75,7 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
-        cmbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Role", "Student", "Instructor" }));
+        cmbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Role", "Student", "Instructor", "Admin" }));
         cmbRole.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbRoleActionPerformed(evt);
@@ -178,7 +179,7 @@ public class SignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbRoleActionPerformed
 
     private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
-           try {
+        try{
         // ----------- READ INPUTS -----------
         String userIdStr = textUserId.getText();
         String username = textUsername.getText().trim();
@@ -186,7 +187,6 @@ public class SignUp extends javax.swing.JFrame {
         char[] pwdChars = textPassword.getPassword(); // get raw password
         String password = new String(pwdChars);
         String selectedRole = cmbRole.getSelectedItem().toString();
-
         // ----------- VALIDATION -----------
         if (userIdStr.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter user ID.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -237,9 +237,14 @@ public class SignUp extends javax.swing.JFrame {
         models.User newUser;
         if (selectedRole.equalsIgnoreCase("STUDENT")) {
             newUser = new models.Student(new java.util.ArrayList<>(), new java.util.ArrayList<>(), userId, username, email, password, models.User.ROLE_STUDENT, false);
-        } else { // Instructor
+        }else if(selectedRole.equalsIgnoreCase("INSTRUCTOR")){
             newUser = new models.Instructor(userId, username, email, password, false);
-        }
+        }else if(selectedRole.equalsIgnoreCase("ADMIN")){
+            newUser = new models.Admin(userId, username, email, password, false);
+        }else {
+        JOptionPane.showMessageDialog(this, "Unknown role selected.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+        }   
 
         // ----------- ADD USER TO JSON -----------
         db.addUser(newUser);
@@ -249,7 +254,7 @@ public class SignUp extends javax.swing.JFrame {
         this.setVisible(false);
         new Frontend.Login().setVisible(true);
 
-    } catch (Exception ex) {
+    }catch (Exception ex) {
         JOptionPane.showMessageDialog(this, "An unexpected error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         ex.printStackTrace();
     }
